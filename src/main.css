@@ -1,0 +1,542 @@
+/* Global styles - Theme, font, utilities, animations and global components */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 5%; /* #0D0D0D */
+    --foreground: 0 0% 100%; /* #FFFFFF */
+
+    --card: 0 0% 10%; /* #1A1A1A */
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 46 65% 52%; /* #D4AF37 Gold */
+    --primary-foreground: 0 0% 5%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%; /* #B3B3B3 */
+
+    --accent: 46 65% 52%;
+    --accent-foreground: 0 0% 5%;
+
+    --destructive: 0 72% 51%; /* #E57373 */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 46 65% 52%;
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 222.2 84% 4.9%;
+
+    --sidebar-primary: 222.2 84% 4.9%;
+
+    --sidebar-primary-foreground: 0 0% 100%;
+
+    --sidebar-accent: 210 40% 98%;
+
+    --sidebar-accent-foreground: 222.2 84% 4.9%;
+
+    --sidebar-border: 214.3 31.8% 91.4%;
+
+    --sidebar-ring: 222.2 84% 4.9%;
+
+    --chart-1: 34 100% 44%;
+    --chart-2: 189 100% 38%;
+    --chart-3: 209 100% 32%;
+    --chart-4: 42 100% 50%;
+    --chart-5: 33 100% 50%;
+  }
+
+  .dark {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 46 65% 52%;
+    --primary-foreground: 0 0% 5%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 46 65% 52%;
+    --accent-foreground: 0 0% 5%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 46 65% 52%;
+  }
+
+  /* NEVER REMOVE THIS */
+  section[aria-label='Notifications alt+T'] {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  body {
+    background-color: #0d0d0d;
+    color: #ffffff;
+    font-family:
+      'Inter',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      sans-serif;
+    min-height: 100vh;
+  }
+
+  /* =========================================================
+     LIGHT MODE OVERRIDES (Contraste AA, Dourado preservado)
+     ========================================================= */
+  html.light-mode body,
+  body.light-theme {
+    background-color: #f8f9fa !important;
+    color: #1a1a1a !important;
+  }
+
+  html.light-mode .light-root-bg {
+    background-color: #f8f9fa !important;
+    color: #1a1a1a !important;
+  }
+
+  /* Container central */
+  html.light-mode .light-container {
+    background-color: #ffffff !important;
+    border-color: #e5e7eb !important;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06) !important;
+  }
+
+  /* Header e Nav fixa */
+  html.light-mode header,
+  html.light-mode nav[aria-label='Navegação da tela inicial'] {
+    background-color: rgba(255, 255, 255, 0.96) !important;
+    border-color: #e5e7eb !important;
+    color: #1a1a1a !important;
+  }
+
+  html.light-mode header span.text-white,
+  html.light-mode header .text-white {
+    color: #1a1a1a !important;
+  }
+
+  /* Inversão dos cards escuros para superfícies claras com alto contraste */
+  html.light-mode .bg-\[\#0D0D0D\],
+  html.light-mode .bg-\[\#0A0A0A\],
+  html.light-mode .bg-\[\#121212\],
+  html.light-mode .bg-\[\#141414\],
+  html.light-mode .bg-\[\#161616\],
+  html.light-mode .bg-\[\#171717\],
+  html.light-mode .bg-\[\#1A1A1A\],
+  html.light-mode .bg-\[\#1C1C1C\],
+  html.light-mode .bg-\[\#1E1E1E\],
+  html.light-mode .bg-\[\#202020\],
+  html.light-mode .bg-\[\#222222\],
+  html.light-mode .bg-\[\#242424\] {
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+  }
+
+  html.light-mode .bg-\[\#161420\]\/80,
+  html.light-mode .bg-\[\#1C1812\]\/90,
+  html.light-mode .bg-\[\#121E17\]\/90,
+  html.light-mode .bg-\[\#1B1916\] {
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+  }
+
+  /* Gradientes de cards temáticos convertidos para tons pastéis suaves e legíveis */
+  html.light-mode .bg-gradient-to-br.from-\[\#1C1C1C\].to-\[\#121212\],
+  html.light-mode .bg-gradient-to-b.from-\[\#221D16\],
+  html.light-mode .bg-gradient-to-r.from-\[\#1C1810\] {
+    background: linear-gradient(135deg, #fffdf5 0%, #fdfbf7 100%) !important;
+    border-color: #d4af37 !important;
+  }
+
+  html.light-mode .bg-gradient-to-br.from-\[\#241E11\],
+  html.light-mode .bg-gradient-to-br.from-\[\#221D12\] {
+    background: linear-gradient(135deg, #fffdf0 0%, #fbf6e9 100%) !important;
+    border-color: #d4af37 !important;
+  }
+
+  html.light-mode .bg-gradient-to-br.from-\[\#0F221A\] {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important;
+    border-color: #10b981 !important;
+  }
+
+  html.light-mode .bg-gradient-to-br.from-\[\#261E10\] {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%) !important;
+    border-color: #f59e0b !important;
+  }
+
+  html.light-mode .bg-gradient-to-br.from-\[\#1E192B\] {
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%) !important;
+    border-color: #a78bfa !important;
+  }
+
+  /* Modais no modo claro */
+  html.light-mode div[role='dialog'] > div[role='document'],
+  html.light-mode div[role='dialog'] > div.max-w-sm,
+  html.light-mode div[role='dialog'] > div.max-w-md {
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+    border-color: #d4af37 !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  html.light-mode div[role='dialog'] .bg-gradient-to-b.from-\[\#1C1C1C\],
+  html.light-mode div[role='dialog'] .bg-gradient-to-b.from-\[\#1E1E1E\] {
+    background: linear-gradient(180deg, #ffffff 0%, #fafaf8 100%) !important;
+  }
+
+  /* Tipografia: Textos brancos ficam escuros com alto contraste */
+  html.light-mode .text-white,
+  html.light-mode .text-white\/90,
+  html.light-mode .text-white\/80 {
+    color: #111827 !important;
+  }
+
+  html.light-mode .text-white\/70,
+  html.light-mode .text-white\/60,
+  html.light-mode .text-\[\#F1E5C8\],
+  html.light-mode .text-\[\#E0E0E0\] {
+    color: #374151 !important;
+  }
+
+  html.light-mode .text-\[\#B3B3B3\],
+  html.light-mode .text-\[\#A0A0A0\],
+  html.light-mode .text-\[\#999999\],
+  html.light-mode .text-\[\#888888\] {
+    color: #4b5563 !important;
+  }
+
+  /* Garantir que textos com fundos coloridos (ex: botões pretos) mantenham legibilidade */
+  html.light-mode .text-\[\#0D0D0D\],
+  html.light-mode .text-black {
+    color: #0d0d0d !important;
+  }
+
+  html.light-mode .bg-\[\#D4AF37\] .text-\[\#0D0D0D\],
+  html.light-mode .bg-\[\#D4AF37\] .text-black {
+    color: #0d0d0d !important;
+  }
+
+  /* Bordas sutis no modo claro */
+  html.light-mode .border-white\/5,
+  html.light-mode .border-white\/10,
+  html.light-mode .border-white\/15,
+  html.light-mode .border-white\/20,
+  html.light-mode .border-white\/30 {
+    border-color: #e5e7eb !important;
+  }
+
+  html.light-mode .bg-white\/5,
+  html.light-mode .bg-white\/10 {
+    background-color: #f3f4f6 !important;
+  }
+
+  /* Botão Aa flutuante no modo claro */
+  html.light-mode .fixed .bg-\[\#1A1A1A\] {
+    background-color: #ffffff !important;
+    border-color: #d4af37 !important;
+    color: #997b20 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12) !important;
+  }
+
+  /* Inputs e textareas no modo claro */
+  html.light-mode input,
+  html.light-mode textarea {
+    background-color: #f9fafb !important;
+    border-color: #d1d5db !important;
+    color: #111827 !important;
+  }
+  html.light-mode input::placeholder,
+  html.light-mode textarea::placeholder {
+    color: #9ca3af !important;
+  }
+
+  /* Acento dourado com contraste otimizado */
+  html.light-mode .text-\[\#D4AF37\] {
+    color: #997b20 !important;
+  }
+
+  html.light-mode .border-\[\#D4AF37\],
+  html.light-mode .border-\[\#D4AF37\]\/40,
+  html.light-mode .border-\[\#D4AF37\]\/50,
+  html.light-mode .border-\[\#D4AF37\]\/30 {
+    border-color: #d4af37 !important;
+  }
+
+  html.light-mode .bg-\[\#D4AF37\]\/10,
+  html.light-mode .bg-\[\#D4AF37\]\/15,
+  html.light-mode .bg-\[\#D4AF37\]\/20 {
+    background-color: rgba(212, 175, 55, 0.12) !important;
+  }
+
+  /* Reduced motion preference override */
+  .reduced-motion,
+  .reduced-motion *,
+  .reduced-motion *::before,
+  .reduced-motion *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Font size presets */
+  html[data-text-size='sm'] {
+    font-size: 14px;
+  }
+  html[data-text-size='md'] {
+    font-size: 16px;
+  }
+  html[data-text-size='lg'] {
+    font-size: 18px;
+  }
+}
+
+@layer utilities {
+  /* KEEP ALL THE ANIMATIONS CLASSES THAT ARE USED BELOW */
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-in-down {
+    from {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out-up {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-out-down {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-down {
+    from {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes spotlight {
+    from {
+      opacity: 0;
+      transform: translate(-72%, -62%) scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -40%) scale(1);
+    }
+  }
+
+  .animate-accordion-down {
+    animation: accordion-down 0.2s ease-out;
+  }
+
+  .animate-accordion-up {
+    animation: accordion-up 0.2s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+  }
+
+  .animate-fade-out {
+    animation: fade-out 0.5s ease-out;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out;
+  }
+
+  .animate-fade-in-down {
+    animation: fade-in-down 0.6s ease-out;
+  }
+
+  .animate-fade-out-up {
+    animation: fade-out-up 0.6s ease-out;
+  }
+
+  .animate-fade-out-down {
+    animation: fade-out-down 0.6s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out;
+  }
+
+  .animate-slide-down {
+    animation: slide-down 0.6s ease-out;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-spotlight {
+    animation: spotlight 2s ease forwards;
+  }
+
+  /* Transição suave entre breakpoints (largura, padding, gap) */
+  .transition-layout {
+    transition-property: max-width, width, padding, margin, gap;
+    transition-duration: 260ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* Regras de impressão para Diário de Autocuidado em layout A5 */
+@media print {
+  @page {
+    size: A5 portrait;
+    margin: 10mm;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #1a1a1a !important;
+    font-size: 11pt !important;
+  }
+
+  /* Oculta tudo que não faz parte do layout de impressão */
+  .no-print,
+  header,
+  nav,
+  footer,
+  aside,
+  button,
+  .print-hide {
+    display: none !important;
+  }
+
+  /* Exibe exclusivamente o container de impressão */
+  .print-only {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    color: #000000 !important;
+  }
+
+  .print-page-a5 {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}
+
+@media screen {
+  .print-only {
+    display: none !important;
+  }
+}
