@@ -7,6 +7,7 @@ import { AuthModal } from '@/components/AuthModal'
 
 const Index: React.FC = () => {
   const navigate = useNavigate()
+  const accountsAvailable = Boolean(import.meta.env.VITE_POCKETBASE_URL)
   const { startDemo, currentUser } = useGame()
   const [authModalOpen, setAuthModalOpen] = React.useState(false)
   const [authMode, setAuthMode] = React.useState<'login' | 'register'>('login')
@@ -69,6 +70,8 @@ const Index: React.FC = () => {
           {/* 2. Entrar (login na conta) */}
           <button
             type="button"
+            disabled={!accountsAvailable}
+            title={accountsAvailable ? undefined : 'Contas indisponíveis nesta demonstração'}
             onClick={currentUser ? () => navigate('/inicio') : handleOpenLogin}
             className="w-full min-h-[48px] px-3 py-2.5 rounded-2xl bg-[#1C1A17] hover:bg-[#25221E] text-white font-semibold text-xs sm:text-sm border border-[#D4AF37]/60 hover:border-[#D4AF37] transition-all flex items-center justify-center gap-1.5 active:scale-[0.98]"
           >
@@ -79,6 +82,8 @@ const Index: React.FC = () => {
           {/* 3. Criar conta (cadastro no PocketBase) */}
           <button
             type="button"
+            disabled={!accountsAvailable}
+            title={accountsAvailable ? undefined : 'Contas indisponíveis nesta demonstração'}
             onClick={handleOpenRegister}
             className="w-full min-h-[48px] px-3 py-2.5 rounded-2xl bg-transparent hover:bg-white/5 text-[#F1E5C8] font-semibold text-xs sm:text-sm border border-white/20 hover:border-[#D4AF37]/50 transition-all flex items-center justify-center gap-1.5 active:scale-[0.98]"
           >
@@ -86,6 +91,8 @@ const Index: React.FC = () => {
             <span>Criar conta</span>
           </button>
         </div>
+
+        {!accountsAvailable && <p className="text-xs text-[#B3B3B3] leading-relaxed">Jogue sem conta: seu progresso fica neste navegador. Login, cadastro e envio online não estão disponíveis nesta demonstração.</p>}
 
         {/* Atalho para continuar jornada existente sem conta se houver */}
         <button

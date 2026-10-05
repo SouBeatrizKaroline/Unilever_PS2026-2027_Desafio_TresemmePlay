@@ -1,5 +1,5 @@
 /* Main App Component - Handles routing (using react-router-dom), query client and other providers */
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import { Toaster } from '@/components/ui/toaster'
 import { Toaster as Sonner } from '@/components/ui/sonner'
 import { TooltipProvider } from '@/components/ui/tooltip'
@@ -13,7 +13,7 @@ import AboutPage from './pages/AboutPage'
 import NotFound from './pages/NotFound'
 
 const App = () => (
-  <BrowserRouter>
+  <HashRouter>
     <GameProvider>
       <TooltipProvider>
         <Toaster />
@@ -30,7 +30,7 @@ const App = () => (
         </Routes>
       </TooltipProvider>
     </GameProvider>
-  </BrowserRouter>
+  </HashRouter>
 )
 
 export default App
